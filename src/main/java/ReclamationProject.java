@@ -7,20 +7,46 @@
  * 4. Add comments and Javadoc comments where needed
  * 5. Remove unnecessary comments as appropriate
  */
+/**
+ * java program ReclamationProject it swaps the values of two strings.
+ * @author yash
+ */
+public class ReclamationProject {
+    /**
+     * Main Function is the binder for the program.
+     * @param args - for arguments
+     */
+    public static void main(final String[] args) {
+        System.out.println(doit("My name is Yash", "My name is Yash Agarwal"));
+    }
 
-public class ReclamationProject
-{
-    static String doit(String a,String b){
-        if (a.length() > b.length()){
-            String c = a; // TODO: set c to a
-            a=b; b=c;}
-        String r = (a.equals(b)) ? "" : ""; // I love the ternary operator!
-        /*
-         * For loop with i
-         */
-        for (int i = 0; i < a.length(); i++) { for (int j = a.length() - i; j > 0; j--) {
-                for (int k = 0; k < b.length()- j; k++) {
-                    r = (a.regionMatches(i, b, k, j) && j >r.length()) ? a.substring(i,i + j) : r; // Do it!
-                        }} // Ah yeah
-        } return r; }
+    /**
+     * function that compares two strings and returns the common characters.
+     * @param firstString contains the string to be compared
+     * @param secondString contains the other string to be compared
+     * @return - commonStringSegment returns the common characters
+     */
+    public static String doit(final String firstString, final String secondString) {
+        String shortString = firstString;
+        String longString = secondString;
+        if (firstString.length() > secondString.length()) {
+            shortString = secondString;
+            longString = firstString;
+        } else if (shortString.equals(longString)) {
+            return shortString;
+        }
+
+        String commonStringSegment = "";
+        for (int i = 0; i < shortString.length(); i++) {
+            for (int j = shortString.length() - i; j > 0; j--) {
+                for (int k = 0; k < longString.length() - j; k++) {
+                    if (shortString.regionMatches(i, longString, k, j)
+                            && j > commonStringSegment.length()) {
+                        commonStringSegment = shortString.substring(i, i + j);
+                    }
+                }
+            }
+        }
+        return commonStringSegment;
+    }
 }
